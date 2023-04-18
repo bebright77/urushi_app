@@ -1,0 +1,87 @@
+<div class="items-sell-contents">
+  <header class="items-sell-header">
+
+  </header>
+  <div class="items-sell-main">
+    <h2 class="items-sell-title">作品の情報を入力</h2>
+    <%= form_with model: @item, url: items_path, local: true do |f| %>
+
+    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+    <%# render 'shared/error_messages', model: f.object %>
+    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+
+    <%# 商品画像 %>
+    <div class="img-upload">
+      <div class="weight-bold-text">
+        商品画像
+        <span class="indispensable">必須</span>
+      </div>
+      <div class="click-upload">
+        <p>
+          クリックしてファイルをアップロード
+        </p>
+        <%= f.file_field :image, id:"item-image" %>
+      </div>
+    </div>
+    <%# /商品画像 %>
+    <%# 商品名と商品説明 %>
+    <div class="new-items">
+      <div class="weight-bold-text">
+        作品名
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_area :item_name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
+      <div class="items-explain">
+        <div class="weight-bold-text">
+          コンセプト
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :concept, class:"items-text", id:"item-info", placeholder:"コンセプト（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %>
+      </div>
+    </div>
+    <%# /商品名と商品説明 %>
+
+    <%# 商品の詳細 %>
+    <div class="items-detail">
+      <div class="form">
+        <div class="weight-bold-text">
+          素材
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :material, class:"items-text", id:"item-info", placeholder:"コンセプト（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %>
+      </div>
+    </div>
+    <div class="form">
+      <div class="weight-bold-text">
+        カテゴリー
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+    </div>
+    <%# /商品の詳細 %>
+
+    <%# 販売価格 %>
+    <div class="sell-price">
+      <div>
+        <div class="price-content">
+          <div class="price-text">
+            <span>価格</span>
+            <span class="indispensable">必須</span>
+          </div>
+          <span class="sell-yen">¥</span>
+          <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
+        </div>
+
+          
+        </div>
+      </div>
+    </div>
+    <%# /販売価格 %>
+    <%# 下部ボタン %>
+    <div class="sell-btn-contents">
+      <%= f.submit "作品を登録する" ,class:"sell-btn" %>
+      <%=link_to 'もどる', root_path, class:"back-btn" %>
+    </div>
+    <%# /下部ボタン %>
+  </div>
+  <% end %>
