@@ -1,0 +1,39 @@
+<%# 作品の概要 %>
+<div class="item-show">
+  <div class="item-box">
+    <h2 class="name">
+      <%= @item.item_name %> / <%= @item.category.name %>
+    </h2>
+    <div class="item-img-content">
+      <%= image_tag @item.image ,class:"item-box-img" %>
+    </div>
+    <div class="item-price-box">
+      <span class="item-price">
+        <%= "¥ #{@item.price}"%> 
+      </span>
+    </div>
+
+    <%# <% if user_signed_in? && @user.id == 1 %> 
+      <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
+      <p class="or-text">or</p>
+      <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
+    <%# <% else %> 
+      <%= link_to "購入画面に進む", item_orders_path(@item), class:"item-red-btn"%>
+    <%# <% end %> 
+
+    <div class="item-explain-box">
+      <span><%= @item.concept %></span>
+    </div>
+    
+    <%# <div class="option">
+      <div class="favorite-btn">
+        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+        <%# <span>お気に入り 0</span>
+      </div>  %>
+      
+  <%# /商品の概要 %>
+
+    </a>
+  </div>
+  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
+</div>
