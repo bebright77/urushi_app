@@ -1,0 +1,63 @@
+<main class="main">
+  <div class="inner">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <%= image_tag "KT_2016fall-3.jpg", class:"banner" %>
+        </div>
+        <div class="swiper-slide">
+          <%= image_tag "KT_2016fall-8.jpg", class: "banner" %>
+        </div>
+        <div class="swiper-slide">
+          <%= image_tag "KT_2016fall-11.jpg", class: "banner" %>
+        </div>
+        <div class="swiper-slide">
+          <%= image_tag "KT_2016fall-17.jpg", class: "banner" %>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+      <script>
+        var swiper = new Swiper('.swiper-container', {
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+        });
+      </script>
+    </div>
+    <div class="card__wrapper">
+      <div class="card">
+        <ul class='item-lists'>
+          <% @items.each do |item| %>
+            <li class='list'>
+              <%= link_to item_path(item.id) do %>
+                <%# <% if item.order.present? %>
+                <%# <% item.item_name, item.image, item.price%>
+                <%# <% end %>
+                <div class='item-img-content'>
+                  <%= image_tag item.image, class: "item-img" %> 
+                </div>
+                <div class='item-info'>
+                  <h3 class='item-name'>
+                    <%= item.item_name %> / <%= item.category.name %>
+                  <div class='item-price'>
+                    <span><%= item.price %>円<br></span>
+                    <%# <div class='star-btn'>
+                      <%= image_tag "star.png", class:"star-icon" %>
+                      <%# <span class='star-count'>0</span> %>
+                    <%# </div> %>
+                  </div>
+                </div>
+              <% end %> 
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
