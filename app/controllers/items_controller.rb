@@ -2,30 +2,18 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show, :update, :destroy]
   def index
     @items = Item.all
-    #@user = User.find(params[:id])
   end
 
   def new
-    #@user = User.find(params[:id])
-    if #@item.user.id == 1
       @item = Item.new
-    else
-      redirect_to root_path
-    end
-    
   end
 
   def create
-    #@user = User.find(params[:id])
-    if current_user.id == 1
-      @item = Item.new(item_params)
-      if @item.save
-        redirect_to root_path(@item)
-      else
-        render :new
-      end
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path(@item)
     else
-      redirect_to root_path
+      render :new
     end
   end
 
