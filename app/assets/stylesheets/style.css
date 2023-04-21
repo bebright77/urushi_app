@@ -38,8 +38,8 @@ a {
 
 .header {
   background-color: #ffffff;
-  margin-bottom: 48px;
-  padding: 20px 0;
+  margin-bottom: 15px;
+  padding: 0px 0;
 
 }
 .inner {
@@ -55,11 +55,15 @@ a {
 .nav__left {
   display: flex;
   align-items: center;
+  justify-items: center;
+  position: relative;
 }
 .logo {
   width: 120px;
   height: 120px;
-  margin-top: 0px;
+}
+.title {
+  font-size: 30px;
 }
 .nav__btn{
   display: inline-block;
