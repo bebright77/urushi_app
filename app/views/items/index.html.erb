@@ -2,18 +2,15 @@
   <div class="inner">
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <%= image_tag "KT_2016fall-3.jpg", class:"banner" %>
-        </div>
-        <div class="swiper-slide">
-          <%= image_tag "KT_2016fall-8.jpg", class: "banner" %>
-        </div>
-        <div class="swiper-slide">
-          <%= image_tag "KT_2016fall-11.jpg", class: "banner" %>
-        </div>
-        <div class="swiper-slide">
-          <%= image_tag "KT_2016fall-17.jpg", class: "banner" %>
-        </div>
+        <% @items.each do |item| %>
+          <div class="swiper-slide">
+            <%= link_to item_path(item.id) do %>
+              <div class='item-img-content'>
+                <%= image_tag item.image, class: "swiper-item-img" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
       <div class="swiper-pagination"></div>
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -30,6 +27,7 @@
         });
       </script>
     </div>
+    <h3>作品一覧</h3>
     <div class="card__wrapper">
       <div class="card">
         <ul class='item-lists'>
@@ -43,7 +41,7 @@
                   <%= image_tag item.image, class: "item-img" %> 
                 </div>
                 <div class='item-info'>
-                  <h3 class='item-name'>
+                  <h4 class='item-name'>
                     <%= item.item_name %> / <%= item.category.name %>
                   <div class='item-price'>
                     <span><%= item.price %>円<br></span>
