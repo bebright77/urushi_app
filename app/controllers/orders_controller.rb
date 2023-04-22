@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only: [:index, :create]
+
   def index
     @order_address = OrderAddress.new
   end
@@ -20,12 +22,12 @@ class OrdersController < ApplicationController
     params.require(:order_address).permit(:postal_code, :prefecture_id, :municipality, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:id], token: params[:token])
   end
 
-  # def set_item
-  #   @item = Item.find(params[:item_id])
-  #   if @item.order.present? || current_user.id == @item.user.id
-  #     redirect_to root_path
-  #   end
-  # end
+  def set_item
+    @item = Item.find(params[:item_id])
+    if @item.order.present?
+      redirect_to root_path
+    end
+  end
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
