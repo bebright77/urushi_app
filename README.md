@@ -133,7 +133,7 @@ https://urushi-app.onrender.com
 * ユーザー登録をしたユーザーは住所の入力をしなくても良い
 
 # データベース設計
-[ER図](https://gyazo.com/0699a7320abb4e1dfecfe82b917eceda)
+[![Image from Gyazo](https://i.gyazo.com/d2af615ec97ed1aafe3ad685c9725526.png)](https://gyazo.com/d2af615ec97ed1aafe3ad685c9725526))
 
 # 画面遷移図
 <!-- [画面遷移図]() -->
