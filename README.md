@@ -145,6 +145,11 @@ https://urushi-app.onrender.com
 * タスク管理
 
 # ローカルでの動作方法
+以下のコマンドを順に実行
+% git clone https://github.com/bebright77/urushi_app
+% cd urushi
+% bundle install
+% yarn install
 
 # 工夫したポイント
 * 色合いは白や黒を基調のシンプルなデザインに統一し、作品が映えるように設計した
