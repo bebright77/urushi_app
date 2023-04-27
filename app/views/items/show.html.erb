@@ -1,39 +1,47 @@
 <%# 作品の概要 %>
 <div class="item-show">
-  <div class="item-box">
-    <h2 class="name">
-      <%= @item.item_name %> / <%= @item.category.name %>
-    </h2>
-    <div class="item-img-content">
-      <%= image_tag @item.image ,class:"item-box-img" %>
-    </div>
-    <div class="item-price-box">
-      <span class="item-price">
-        <%= "¥ #{@item.price}"%> 
-      </span>
-    </div>
-
-    <%# <% if user_signed_in? && @user.id == 1 %> 
-      <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
-      <p class="or-text">or</p>
-      <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
-    <%# <% else %> 
-      <%= link_to "購入画面に進む", item_orders_path(@item), class:"item-red-btn"%>
-    <%# <% end %> 
-
-    <div class="item-explain-box">
-      <span><%= @item.concept %></span>
-    </div>
-    
-    <%# <div class="option">
-      <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <%# <span>お気に入り 0</span>
-      </div>  %>
-      
-  <%# /商品の概要 %>
-
-    </a>
+  <div class="show-img-content">
+    <%= image_tag @item.image ,class:"item-box-img" %>
   </div>
-  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
+  <table class="item-summary">
+    <tr>
+      <th class="show-list-name">作品名/カテゴリー</th>
+      <td class="item-names"><%= @item.item_name %> / <%= @item.category.name %></td>
+    </tr>
+    <tr>
+      <th class="show-list">コンセプト</th>
+      <td class="item-concept"><%=@item.concept%> </td>
+    </tr>
+    <tr>
+      <th class="show-list">素材</th>
+      <td class="item-concept"><%=@item.material%> </td>
+    </tr>
+    <tr>
+      <th class="show-list">価格</th>
+      <td class="item-price"><%="¥#{@item.price}"%></td>
+    </tr>
+  </table>
+  <%# if user_signed_in? && @user.id == 1 %> 
+  <ul class=show-btn>
+    <li class="edit-btn">
+      <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-edit-btn" %>
+    </li>
+    <li class="edit-btn">
+      <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
+    </li>
+    <%# else %> 
+    <li class="buy">
+      <%= link_to "購入 / buy", item_orders_path(@item), class: "buy-btn" %>
+    </li>
+  </ul>
+  <%# end %> 
+  
+  <%# <div class="option">
+    <div class="favorite-btn">
+      <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+      <%# <span>お気に入り 0</span>
+    </div>  %>
+    
+  <%# /商品の概要 %>
+  <%# <a href="#" class="another-item"><%= @item.category.nameをもっと見る</a> %>
 </div>

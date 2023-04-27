@@ -1,88 +1,48 @@
-<%# cssは商品出品のものを併用しています。
-app/assets/stylesheets/items/new.css %>
-
 <div class="items-sell-contents">
   <header class="items-sell-header">
   </header>
   <div class="items-sell-main">
-    <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with local: true do |f| %>
+    <%= form_with model: @item, url: item_path, method: :patch, local: true do |f| %>
 
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-
-    <%# 商品画像 %>
-    <div class="img-upload">
-      <div class="weight-bold-text">
-        商品画像
-        <span class="indispensable">必須</span>
-      </div>
-      <div class="click-upload">
-        <p>
-          クリックしてファイルをアップロード
-        </p>
-        <%= f.file_field :image, id:"item-image" %>
-      </div>
-    </div>
-    <%# 商品名と商品説明 %>
-    <div class="new-items">
-      <div class="weight-bold-text">
-        作品名
-        <span class="indispensable">必須</span>
-      </div>
-      <%= f.text_area :item_name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
-      <div class="items-explain">
-        <div class="weight-bold-text">
-          コンセプト
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.text_area :concept, class:"items-text", id:"item-info", placeholder:"コンセプト（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %>
-      </div>
-    </div>
-    <%# /商品名と商品説明 %>
-
-    <%# 商品の詳細 %>
-    <div class="items-detail">
-      <div class="form">
-        <div class="weight-bold-text">
-          素材
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.text_area :material, class:"items-text", id:"item-info", placeholder:"コンセプト（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %>
-      </div>
-    </div>
-    <div class="form">
-      <div class="weight-bold-text">
-        カテゴリー
-        <span class="indispensable">必須</span>
-      </div>
-      <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
-    </div>
-    <%# /商品の詳細 %>
-
-    <%# 販売価格 %>
-    <div class="sell-price">
-      <div class="weight-bold-text question-text">
-        <span>販売価格<br>(¥300〜9,999,999)</span>
-        <a class="question" href="#">?</a>
-      </div>
-      <div>
-        <div class="price-content">
-          <div class="price-text">
-            <span>価格</span>
-            <span class="indispensable">必須</span>
+    <%= render 'shared/error_messages', model: f.object %>
+    <table class="new-item-post">
+      <tr>
+        <th class="items-sell-title">作品の情報を入力</th>
+      </tr>
+      <tr>
+        <th><span class="indispensable"> *</span>作品画像</th>
+        <td class="click-upload"><%= f.file_field :image, id:"item-image" %></td>
+      </tr>
+      <tr>
+        <th><span class="indispensable"> *</span>作品名</th>
+        <td><%= f.text_area :item_name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %></td>
+      </tr>
+      <tr>
+        <th><span class="indispensable"> *</span>コンセプト</th>
+        <td><%= f.text_area :concept, class:"items-text", id:"item-info", placeholder:"コンセプト（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %></td>
+      </tr>
+      <tr>
+        <th><span class="indispensable"> *</span>素材</th>
+        <td><%= f.text_area :material, class:"items-text", id:"item-info", placeholder:"素材（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %></td>
+      </tr>
+      <tr>
+        <th><span class="indispensable"> *</span>カテゴリー</th>
+        <td><%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %></td>
+      </tr>
+      <tr>
+        <th><span class="indispensable"> *</span>価格</th>
+        <td>
+          <div class="price-content">
+            <span class="sell-yen"></span>
+            <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
           </div>
-          <span class="sell-yen">¥</span>
-          <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
-        </div>
-      </div>
-    </div>
-    <%# /販売価格 %>
+        </td>
+      </tr>
+    </table>
 
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
-      <%= f.submit "変更する" ,class:"sell-btn" %>
+      <%= f.submit "編集する" ,class:"sell-btn" %>
       <%=link_to 'もどる', item_path, class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
