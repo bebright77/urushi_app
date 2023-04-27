@@ -1,60 +1,69 @@
 <main class="main">
   <div class="inner">
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <% @items.each do |item| %>
-          <div class="swiper-slide">
-            <%= link_to item_path(item.id) do %>
-              <div class='item-img-content'>
-                <%= image_tag item.image, class: "swiper-item-img" %>
+    <div class="swiper">
+      <div class="swiper-container ">
+        <div class="swiper-wrapper">
+          <% @items.each do |item| %>
+            <% if item.order.blank? %>
+              <div class="swiper-slide">
+                <%= link_to item_path(item.id) do %>
+                  <div class='swiper-img-content'>
+                    <%= image_tag item.image, class: "swiper-item-img" %>
+                  </div>
+                <% end %>
               </div>
             <% end %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
+        <div class="swiper-pagination"></div>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script>
+          var swiper = new Swiper('.swiper-container', {
+            autoplay: {
+              delay: 5000,
+              disableOnInteraction: false,
+            },
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+          });
+        </script>
       </div>
-      <div class="swiper-pagination"></div>
-      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-      <script>
-        var swiper = new Swiper('.swiper-container', {
-          autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-          },
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-        });
-      </script>
     </div>
-    <h3>作品一覧</h3>
+
     <div class="card__wrapper">
       <div class="card">
-        <ul class='item-lists'>
-          <% @items.each do |item| %>
-            <li class='list'>
-              <%= link_to item_path(item.id) do %>
-                <%# <% if item.order.present? %>
-                <%# <% item.item_name, item.image, item.price%>
-                <%# <% end %>
-                <div class='item-img-content'>
-                  <%= image_tag item.image, class: "item-img" %> 
-                </div>
-                <div class='item-info'>
-                  <h4 class='item-name'>
-                    <%= item.item_name %> / <%= item.category.name %>
-                  <div class='item-price'>
-                    <span><%= item.price %>円<br></span>
-                    <%# <div class='star-btn'>
-                      <%= image_tag "star.png", class:"star-icon" %>
-                      <%# <span class='star-count'>0</span> %>
-                    <%# </div> %>
-                  </div>
-                </div>
-              <% end %> 
-            </li>
-          <% end %>
-        </ul>
+        <h3 class="item-index">
+          作品一覧
+        </h3>
+        <div class="item-lists-warapper">
+          <ul class="item-lists">
+            <% @items.each do |item| %>
+              <% if item.order.blank? %>
+                <li class="list">
+                  <%= link_to item_path(item.id) do %>
+                    <div class="item-img-content">
+                      <%= image_tag item.image, class: "item-img" %> 
+                    </div>
+                    <div class="item-info">
+                      <h4 class="item-name">
+                        <%= item.item_name %> / <%= item.category.name %>
+                      </h4>
+                      <div class="item-price">
+                        <span><%= item.price %>円<br></span>
+                        <%# <div class='star-btn'>
+                          <%= image_tag "star.png", class:"star-icon" %>
+                          <%# <span class='star-count'>0</span> %>
+                        <%# </div> %>
+                      </div>
+                    </div>
+                  <% end %> 
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
