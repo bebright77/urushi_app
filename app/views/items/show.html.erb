@@ -21,7 +21,7 @@
       <td class="item-price"><%="¥#{@item.price}"%></td>
     </tr>
   </table>
-  <%# if user_signed_in? && @user.id == 1 %> 
+  <% if user_signed_in?  %> 
   <ul class=show-btn>
     <li class="edit-btn">
       <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-edit-btn" %>
@@ -29,12 +29,12 @@
     <li class="edit-btn">
       <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
     </li>
-    <%# else %> 
+    <% else %> 
     <li class="buy">
       <%= link_to "購入 / buy", item_orders_path(@item), class: "buy-btn" %>
     </li>
   </ul>
-  <%# end %> 
+  <% end %> 
   
   <%# <div class="option">
     <div class="favorite-btn">
